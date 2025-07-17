@@ -1,0 +1,215 @@
+{
+  "stats": {
+    "suites": 4,
+    "tests": 3,
+    "passes": 3,
+    "pending": 0,
+    "failures": 0,
+    "start": "2025-07-17T02:25:43.569Z",
+    "end": "2025-07-17T02:25:43.693Z",
+    "duration": 124,
+    "testsRegistered": 3,
+    "passPercent": 100,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "fbd6c37a-5a29-4b92-afde-82aea97e589d",
+      "title": "",
+      "fullFile": "",
+      "file": "",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [],
+      "suites": [
+        {
+          "uuid": "6b4ea6a2-1c48-444c-a63e-cf5efc70a002",
+          "title": "Login",
+          "fullFile": "C:\\projetosCacau\\banco-api-tests\\test\\login.test.js",
+          "file": "\\test\\login.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "4c4e7f47-f5b1-4aef-b8b0-421412a786e6",
+              "title": "POST /login",
+              "fullFile": "C:\\projetosCacau\\banco-api-tests\\test\\login.test.js",
+              "file": "\\test\\login.test.js",
+              "beforeHooks": [],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar 200 com um token em string quando usar credenciais válidas",
+                  "fullTitle": "Login POST /login Deve retornar 200 com um token em string quando usar credenciais válidas",
+                  "timedOut": false,
+                  "duration": 53,
+                  "state": "passed",
+                  "speed": "medium",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const bodyLogin = {...postLogin}\nconst resposta = await request (process.env.BASE_URL)\n.post('/login')\n.set('Content-Type' , 'application/json')\n.send(bodyLogin)\nconsole.log(resposta.status)\nconsole.log(resposta.body)\nexpect (resposta.status).to.equal(200);\nexpect (resposta.body.token).to.be.a('string');",
+                  "err": {},
+                  "uuid": "29f2478a-cedd-4c09-ab3f-a54cc4bcdd96",
+                  "parentUUID": "4c4e7f47-f5b1-4aef-b8b0-421412a786e6",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "29f2478a-cedd-4c09-ab3f-a54cc4bcdd96"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 53,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 200000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 200000
+        },
+        {
+          "uuid": "3c8a2eb5-45a0-4961-8b64-34e6859933d1",
+          "title": "Transferências",
+          "fullFile": "C:\\projetosCacau\\banco-api-tests\\test\\transferencia.test.js",
+          "file": "\\test\\transferencia.test.js",
+          "beforeHooks": [],
+          "afterHooks": [],
+          "tests": [],
+          "suites": [
+            {
+              "uuid": "c4382661-23a0-46fb-a25a-e9a564a64394",
+              "title": "POST /transferencias",
+              "fullFile": "C:\\projetosCacau\\banco-api-tests\\test\\transferencia.test.js",
+              "file": "\\test\\transferencia.test.js",
+              "beforeHooks": [
+                {
+                  "title": "\"before each\" hook in \"POST /transferencias\"",
+                  "fullTitle": "Transferências POST /transferencias \"before each\" hook in \"POST /transferencias\"",
+                  "timedOut": false,
+                  "duration": 9,
+                  "state": null,
+                  "speed": null,
+                  "pass": false,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "token = await obterToken('julio.lima', '123456')",
+                  "err": {},
+                  "uuid": "eaa0caf4-878d-44ef-9727-8984b67fd4cd",
+                  "parentUUID": "c4382661-23a0-46fb-a25a-e9a564a64394",
+                  "isHook": true,
+                  "skipped": false
+                }
+              ],
+              "afterHooks": [],
+              "tests": [
+                {
+                  "title": "Deve retornar sucesso com 201 quando o valor da transferencia for igual ou acima de R$ 10,00",
+                  "fullTitle": "Transferências POST /transferencias Deve retornar sucesso com 201 quando o valor da transferencia for igual ou acima de R$ 10,00",
+                  "timedOut": false,
+                  "duration": 23,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const bodyTransferencias = { ...postTransferencias}\nconst resposta = await request(process.env.BASE_URL)\n    .post('/transferencias')\n    .set('Content-Type' , 'application/json')\n    .set('Authorization' , `Bearer ${token}`)\n    .send(bodyTransferencias)\n        \n        expect(resposta.status).to.equal(201);\n        console.log(resposta.body)",
+                  "err": {},
+                  "uuid": "3850143a-01c6-4c28-bb3e-9332708fa8c1",
+                  "parentUUID": "c4382661-23a0-46fb-a25a-e9a564a64394",
+                  "isHook": false,
+                  "skipped": false
+                },
+                {
+                  "title": "Deve retornar falha com 422 quando o valor da transferencia for abaixo de R$ 10,00",
+                  "fullTitle": "Transferências POST /transferencias Deve retornar falha com 422 quando o valor da transferencia for abaixo de R$ 10,00",
+                  "timedOut": false,
+                  "duration": 5,
+                  "state": "passed",
+                  "speed": "fast",
+                  "pass": true,
+                  "fail": false,
+                  "pending": false,
+                  "context": null,
+                  "code": "const bodyTransferencias = { ...postTransferencias}\nbodyTransferencias.valor = 7\n const resposta = await request(process.env.BASE_URL)\n     .post('/transferencias')\n     .set('Content-Type' , 'application/json')\n     .set('Authorization' , `Bearer ${token}`)\n     .send(bodyTransferencias)\n         \n         expect(resposta.status).to.equal(422);",
+                  "err": {},
+                  "uuid": "3a226d7f-ad85-4da8-8621-690193adab2b",
+                  "parentUUID": "c4382661-23a0-46fb-a25a-e9a564a64394",
+                  "isHook": false,
+                  "skipped": false
+                }
+              ],
+              "suites": [],
+              "passes": [
+                "3850143a-01c6-4c28-bb3e-9332708fa8c1",
+                "3a226d7f-ad85-4da8-8621-690193adab2b"
+              ],
+              "failures": [],
+              "pending": [],
+              "skipped": [],
+              "duration": 28,
+              "root": false,
+              "rootEmpty": false,
+              "_timeout": 200000
+            }
+          ],
+          "passes": [],
+          "failures": [],
+          "pending": [],
+          "skipped": [],
+          "duration": 0,
+          "root": false,
+          "rootEmpty": false,
+          "_timeout": 200000
+        }
+      ],
+      "passes": [],
+      "failures": [],
+      "pending": [],
+      "skipped": [],
+      "duration": 0,
+      "root": true,
+      "rootEmpty": true,
+      "_timeout": 200000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "11.7.1"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.3"
+    },
+    "marge": {
+      "options": null,
+      "version": "6.2.0"
+    }
+  }
+}
