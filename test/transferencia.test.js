@@ -6,13 +6,15 @@ const {obterToken} = require ('../helpers/autenticacao')
 const postTransferencias = require('../fixtures/postTransferencias.json')
 
 describe('Transferências', () => {
-    describe ('POST /transferencias', () => {
-        let token 
 
-        beforeEach( async () => {
-            token = await obterToken('julio.lima', '123456')
-        })
-        
+    let token 
+
+    beforeEach( async () => {
+        token = await obterToken('julio.lima', '123456')
+    })
+
+    describe ('POST /transferencias', () => {
+       
         it ('Deve retornar sucesso com 201 quando o valor da transferencia for igual ou acima de R$ 10,00' , async () => {
             const bodyTransferencias = { ...postTransferencias}
 
@@ -38,6 +40,17 @@ describe('Transferências', () => {
                     
                     expect(resposta.status).to.equal(422);
 
+        })
+    })
+
+    describe ('GET /transferencias/id', () => {
+        it ('Deve retornar sucesso com 200 e dados iguais ao registro de transferencia contido no banco de dados quando o id for válido', async () => {
+            const resposta = await request(process.env.BASE_URL)
+                .get('/transferencias/8')
+                .set('Authorization', `Bearer ${token}`)
+
+                console.log(resposta.staus)
+                console.log(resposta.body)
         })
     })
 })
